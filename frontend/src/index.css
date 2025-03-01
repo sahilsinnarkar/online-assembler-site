@@ -1,0 +1,6 @@
+@import url('https://fonts.cdnfonts.com/css/cascadia-code');
+@import "tailwindcss";
+
+.font-mono {
+  font-family: 'Cascadia Code', monospace;
+}
