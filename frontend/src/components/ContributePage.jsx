@@ -9,10 +9,18 @@ const ContributePage = () => {
     const [contributions, setContributions] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
+    // Fetch contributions from backend
+    const fetchContributions = async () => {
+        try {
+            const res = await axios.get("http://localhost:5000/api/contributions");
+            setContributions(res.data);
+        } catch (err) {
+            console.error("Error fetching contributions:", err);
+        }
+    };
+
     useEffect(() => {
-        axios.get("http://localhost:5000/api/contributions")
-            .then((res) => setContributions(res.data))
-            .catch((err) => console.log("Error fetching contributions:", err));
+        fetchContributions();
     }, []);
 
     const handleSubmit = async (e) => {
@@ -20,13 +28,12 @@ const ContributePage = () => {
         if (!title || !content) return alert("Title and content are required");
 
         try {
-            const res = await axios.post("http://localhost:5000/api/contribute", {
-                title,
-                content,
-                codeSnippet,
-            });
+            await axios.post("http://localhost:5000/api/contribute", { title, content, codeSnippet });
 
-            setContributions([...contributions, res.data]);
+            // After submitting, refresh the contributions list
+            fetchContributions();
+
+            // Clear form fields
             setTitle("");
             setContent("");
             setCodeSnippet("");
@@ -81,7 +88,7 @@ const ContributePage = () => {
                             />
                             <div className="flex justify-between">
                                 <button
-                                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition"
+                                    className="px-4 py-2 bg-teal-800 text-white rounded-lg hover:bg-teal-700 transition"
                                     type="submit"
                                 >
                                     Submit
@@ -89,6 +96,7 @@ const ContributePage = () => {
                                 <button
                                     onClick={() => setShowForm(false)}
                                     className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-600 transition"
+                                    type="button"
                                 >
                                     Cancel
                                 </button>

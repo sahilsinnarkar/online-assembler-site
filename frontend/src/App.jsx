@@ -11,6 +11,7 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/" element={<LearnPage />} />
         <Route path="/learn" element={<LearnPage />} />
         <Route path="/contribute" element={<ContributePage />} />
         <Route path="/try-it-yourself" element={<TryItYourself />} />
