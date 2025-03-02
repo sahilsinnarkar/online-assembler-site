@@ -22,6 +22,8 @@ const LearnPage = () => {
                         { id: "registers", label: "Registers & Memory" },
                         { id: "running-code", label: "Writing & Running Code" },
                         { id: "examples", label: "Examples & Exercises" },
+                        { id: "advanced", label: "Advanced Concepts" },
+                        { id: "applications", label: "Applications of Assembly" },
                     ].map((item) => (
                         <li
                             key={item.id}
@@ -42,11 +44,13 @@ const LearnPage = () => {
                     <h2 className="text-3xl font-bold text-teal-800">1️⃣ Introduction to Assembly</h2>
                     <p className="mt-2 text-gray-700">
                         Assembly language is a low-level programming language that communicates directly with the CPU.
+                        It provides fine-grained control over hardware and is widely used in systems programming, 
+                        embedded systems, and performance-critical applications.
                     </p>
                     <ul className="mt-4 list-disc list-inside text-gray-700">
-                        <li>Used for system programming and performance-critical applications.</li>
-                        <li>Provides control over CPU registers and memory.</li>
-                        <li>Essential for writing optimized machine-level code.</li>
+                        <li>Used for direct hardware manipulation and optimization.</li>
+                        <li>Requires knowledge of CPU architecture.</li>
+                        <li>Essential for debugging and reverse engineering.</li>
                     </ul>
                 </section>
 
@@ -55,8 +59,8 @@ const LearnPage = () => {
                     <p className="mt-2 text-gray-700">Assembly code is translated into machine code and executed by the CPU.</p>
                     <ul className="mt-4 list-disc list-inside text-gray-700">
                         <li><strong>Assembler:</strong> Converts .asm file to machine code.</li>
-                        <li><strong>Linker:</strong> Resolves dependencies.</li>
-                        <li><strong>Loader:</strong> Loads executable into memory.</li>
+                        <li><strong>Linker:</strong> Resolves dependencies and creates executable files.</li>
+                        <li><strong>Loader:</strong> Loads the program into memory for execution.</li>
                     </ul>
                 </section>
 
@@ -75,62 +79,48 @@ const LearnPage = () => {
                     </div>
                 </section>
 
-                <section id="registers" className="mb-10">
-                    <h2 className="text-3xl font-bold text-teal-800">4️⃣ Registers & Memory Management</h2>
-                    <table className="w-full border-collapse border border-gray-300 mt-4">
-                        <thead>
-                            <tr className="bg-teal-700 text-white">
-                                <th className="p-2">Register</th>
-                                <th className="p-2">Purpose</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr className="border-t">
-                                <td className="p-2">EAX</td>
-                                <td className="p-2">Accumulator</td>
-                            </tr>
-                            <tr className="border-t">
-                                <td className="p-2">EBX</td>
-                                <td className="p-2">Base Register</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <section id="advanced" className="mb-10">
+                    <h2 className="text-3xl font-bold text-teal-800">7️⃣ Advanced Concepts</h2>
+                    <p className="mt-2 text-gray-700">Understanding Stack, Heap, and Control Flow.</p>
+                    <ul className="mt-4 list-disc list-inside text-gray-700">
+                        <li>Stack-based memory allocation.</li>
+                        <li>Interrupt handling and system calls.</li>
+                        <li>Optimizing Assembly code for performance.</li>
+                    </ul>
                 </section>
 
-                <section id="running-code" className="mb-10">
-                    <h2 className="text-3xl font-bold text-teal-800">5️⃣ Writing & Running Assembly Code</h2>
-                    <p className="mt-2 text-gray-700">To run Assembly programs, install NASM and GCC:</p>
-                    <div className="mt-4 bg-gray-900 text-white p-4 rounded-lg font-mono">
-                        <code>
-                            sudo apt install nasm <br />
-                            nasm -f elf64 hello.asm <br />
-                            ld hello.o -o hello <br />
-                            ./hello
-                        </code>
-                    </div>
-                </section>
-
-                <section id="examples" className="mb-10">
-                    <h2 className="text-3xl font-bold text-teal-800">6️⃣ Examples & Exercises</h2>
-                    <p className="mt-2 text-gray-700">Try modifying this example to subtract numbers.</p>
-                    <div className="mt-4 bg-gray-900 text-white p-4 rounded-lg font-mono">
-                        <code>
-                            mov eax, 5 <br />
-                            mov ebx, 3 <br />
-                            add eax, ebx &nbsp; ; eax = 5 + 3
-                        </code>
-                    </div>
+                <section id="applications" className="mb-10">
+                    <h2 className="text-3xl font-bold text-teal-800">8️⃣ Applications of Assembly</h2>
+                    <p className="mt-2 text-gray-700">Assembly language is used in:</p>
+                    <ul className="mt-4 list-disc list-inside text-gray-700">
+                        <li>Operating System Development</li>
+                        <li>Game Development (low-level graphics rendering)</li>
+                        <li>Embedded Systems</li>
+                        <li>Cybersecurity & Malware Analysis</li>
+                    </ul>
                 </section>
             </main>
 
-            {/* Right Sidebar (Optional Quick Tips) */}
+            {/* Right Sidebar: Step-by-Step Guide for Windows */}
             <aside className="w-1/4 hidden lg:block bg-gray-200 p-6 sticky top-0 h-screen">
-                <h3 className="text-xl font-bold text-teal-800 mb-4">💡 Quick Tips</h3>
-                <ul className="list-disc list-inside text-gray-700">
-                    <li>Use NASM for assembling code.</li>
-                    <li>Memory is managed in segments.</li>
-                    <li>Registers store temporary data.</li>
-                </ul>
+                <h3 className="text-xl font-bold text-teal-800 mb-4">⚙️ Running Assembly on Windows</h3>
+                <ol className="list-decimal list-inside text-gray-700">
+                    <li>Download and install <strong>NASM</strong> (Netwide Assembler).</li>
+                    <li>Install a C Compiler like <strong>MinGW</strong> or use Windows Subsystem for Linux (WSL).</li>
+                    <li>Write an Assembly program and save it as <code className="font-mono">program.asm</code>.</li>
+                    <li>Assemble the code using NASM:</li>
+                    <div className="mt-2 bg-gray-900 text-white p-4 rounded-lg font-mono">
+                        <code>nasm -f win64 program.asm -o program.obj</code>
+                    </div>
+                    <li>Link the object file using GCC:</li>
+                    <div className="mt-2 bg-gray-900 text-white p-4 rounded-lg font-mono">
+                        <code>gcc program.obj -o program.exe</code>
+                    </div>
+                    <li>Run the executable:</li>
+                    <div className="mt-2 bg-gray-900 text-white p-4 rounded-lg font-mono">
+                        <code>./program.exe</code>
+                    </div>
+                </ol>
             </aside>
         </div>
     );
